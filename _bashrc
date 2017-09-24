@@ -1,21 +1,5 @@
-### ALIASES
-alias ls="ls -GF"
-alias vi="mvim -v"
+### ENVVARS
 
-### Functions
-gt() {
-  go test $(go list ./... | grep -v vendor)
-}
-
-gv() {
-  go vet $(go list ./... | grep -v vendor)
-}
-
-gl() {
-  golint ./... | grep -v vendor
-}
-
-### Additional env vars (OSX)
 export JAVA_HOME=`/usr/libexec/java_home`
 export GOPATH=$HOME/go
 export CDPATH=.:$GOPATH/src/github.com
@@ -26,6 +10,7 @@ export FONTCONFIG_PATH=/opt/X11/lib/X11/fontconfig
 [[ -f "$HOME/.aws_creds" ]] && source "$HOME/.aws_creds"
 
 ### PATH EXTENSIONS
+
 PATH="$HOME/.bin:$PATH"
 PATH="/usr/local/share/npm/bin:$PATH" # Add NPM global binaries to PATH
 PATH="$GOPATH/bin:$PATH"
@@ -34,12 +19,9 @@ PATH="/usr/local/heroku/bin:$PATH"
 PATH="$HOME/.rbenv/bin:$PATH"
 export PATH
 
-### VIRTUAL ENVIRONMENTS
-eval "$(rbenv init -)"
+### LANGUAGE VERSION MANAGEMENT
 
-if (command -v brew >/dev/null 2>&1) && [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
+eval "$(rbenv init -)"
 
 ### PS1
 
@@ -54,3 +36,26 @@ function color_my_prompt {
     export PS1="$__user_and_host $__cur_location $__git_branch_color$__git_branch$__git_dirty$__prompt_tail$__last_color "
 }
 color_my_prompt
+
+### BASH COMPLETION
+
+if (command -v brew >/dev/null 2>&1) && [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
+
+### ALIASES & UTILITY FUNCTIONS
+
+alias ls="ls -GF"
+alias vi="mvim -v"
+
+gt() {
+  go test $(go list ./... | grep -v vendor)
+}
+
+gv() {
+  go vet $(go list ./... | grep -v vendor)
+}
+
+gl() {
+  golint ./... | grep -v vendor
+}
