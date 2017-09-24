@@ -1,0 +1,56 @@
+### ALIASES
+alias ls="ls -GF"
+alias vi="mvim -v"
+
+### Functions
+gt() {
+  go test $(go list ./... | grep -v vendor)
+}
+
+gv() {
+  go vet $(go list ./... | grep -v vendor)
+}
+
+gl() {
+  golint ./... | grep -v vendor
+}
+
+### Additional env vars (OSX)
+export JAVA_HOME=`/usr/libexec/java_home`
+export GOPATH=$HOME/go
+export CDPATH=.:$GOPATH/src/github.com
+export NODE_PATH=/usr/local/lib/node_modules
+export GIT_SSH=ssh-git
+export FONTCONFIG_PATH=/opt/X11/lib/X11/fontconfig
+
+[[ -f "$HOME/.aws_creds" ]] && source "$HOME/.aws_creds"
+
+### PATH EXTENSIONS
+PATH="$HOME/.bin:$PATH"
+PATH="/usr/local/share/npm/bin:$PATH" # Add NPM global binaries to PATH
+PATH="$GOPATH/bin:$PATH"
+PATH="/Applications/Postgres.app/Contents/Versions/9.5/bin:$PATH"
+PATH="/usr/local/heroku/bin:$PATH"
+PATH="$HOME/.rbenv/bin:$PATH"
+export PATH
+
+### VIRTUAL ENVIRONMENTS
+eval "$(rbenv init -)"
+
+if (command -v brew >/dev/null 2>&1) && [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
+
+### PS1
+
+function color_my_prompt {
+    local __user_and_host="\[\033[32m\]\u@\h"
+    local __cur_location="\[\033[34m\]\w"
+    local __git_branch_color="\[\033[31m\]"
+    local __git_branch='`git branch 2> /dev/null | grep -e ^* | sed -E  s/^\\\\\*\ \(.+\)$/\(\\\\\1\)\/`'
+    local __git_dirty='`git rev-parse 2>/dev/null && (git diff --no-ext-diff --quiet --exit-code 2> /dev/null && echo -e " " || echo -e "* ")`'
+    local __prompt_tail="\[\033[37m\]$"
+    local __last_color="\[\033[00m\]"
+    export PS1="$__user_and_host $__cur_location $__git_branch_color$__git_branch$__git_dirty$__prompt_tail$__last_color "
+}
+color_my_prompt

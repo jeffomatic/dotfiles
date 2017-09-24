@@ -1,0 +1,7 @@
+#!/bin/sh
+if [ -z "$GIT_SSH_ID" ]; then
+	# if GIT_SSH_ID is not specified, run ssh using default keyfile
+	ssh "$@"
+else
+	ssh -i "$GIT_SSH_ID" "$@"
+fi

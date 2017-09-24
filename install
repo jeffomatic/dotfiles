@@ -1,0 +1,26 @@
+#!/bin/bash
+
+function link_file {
+  source="${PWD}/$1"
+  target="${HOME}/"`echo $1 | sed "s/^_/./"`
+
+  echo "Linking ${source} to ${target}..."
+
+  if [[ -e "${target}" && ! -L "${target}" ]]; then
+    mv $target $target.bak
+  fi
+
+  rm -f ${target}
+  ln -s ${source} ${target}
+}
+
+if [ $# -gt 0 ]; then
+  for f in $@; do
+    link_file $f
+  done
+else
+  for i in _*; do
+    link_file $i
+  done
+fi
+
