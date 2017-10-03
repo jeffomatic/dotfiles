@@ -22,7 +22,7 @@ export PATH
 
 ### LANGUAGE VERSION MANAGEMENT
 
-eval "$(rbenv init -)"
+[[ -f "/usr/local/opt/asdf/asdf.sh" ]] && source /usr/local/opt/asdf/asdf.sh
 
 ### PS1
 
