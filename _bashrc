@@ -12,6 +12,11 @@ export FONTCONFIG_PATH=/opt/X11/lib/X11/fontconfig
 ### PATH EXTENSIONS
 
 PATH="$HOME/.bin:$PATH"
+
+if [[ -d "$HOME/bin" ]]; then
+  PATH="$HOME/bin:$PATH"
+fi
+
 PATH="/usr/local/share/npm/bin:$PATH" # Add NPM global binaries to PATH
 PATH="$GOPATH/bin:$PATH"
 PATH="/Applications/Postgres.app/Contents/Versions/9.5/bin:$PATH"
