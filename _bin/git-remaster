@@ -1,0 +1,17 @@
+#!/bin/sh
+
+branch=`git branch | grep \* | cut -d ' ' -f2`
+if [ $branch = 'master' ]; then
+    echo "Can't remaster on master" >&2
+    exit 1
+fi
+
+ref=`git rev-parse $branch`
+echo "To restore your branch ($branch), run the following:"
+echo "  git checkout $ref"
+
+git checkout master
+git pull
+git checkout $branch
+git rebase -i master
+
