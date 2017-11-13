@@ -19,9 +19,8 @@ fi
 
 PATH="/usr/local/share/npm/bin:$PATH" # Add NPM global binaries to PATH
 PATH="$GOPATH/bin:$PATH"
-PATH="/Applications/Postgres.app/Contents/Versions/9.5/bin:$PATH"
+PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
 PATH="/usr/local/heroku/bin:$PATH"
-PATH="$HOME/.rbenv/bin:$PATH"
 PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 export PATH
 
