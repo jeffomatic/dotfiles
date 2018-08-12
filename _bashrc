@@ -2,7 +2,6 @@
 
 # export JAVA_HOME=`/usr/libexec/java_home`
 export GOPATH=$HOME/go
-export CDPATH=.:$GOPATH/src/github.com
 export NODE_PATH=/usr/local/lib/node_modules
 export GIT_SSH=ssh-git
 export FONTCONFIG_PATH=/opt/X11/lib/X11/fontconfig
