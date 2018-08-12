@@ -65,6 +65,8 @@ if [ -s "$HOME/.opam/opam-init/init.sh" ]; then
   . /Users/jeff/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 fi
 
+command -v rbenv >/dev/null && eval "$(rbenv init -)"
+
 ### ALIASES & UTILITY FUNCTIONS
 
 alias ls="ls -GF"
