@@ -66,14 +66,4 @@ fi
 alias ls="ls -GF"
 alias vi="mvim -v"
 
-gt() {
-  go test $(go list ./... | grep -v vendor)
-}
 
-gv() {
-  go vet $(go list ./... | grep -v vendor)
-}
-
-gl() {
-  golint ./... | grep -v vendor
-}
