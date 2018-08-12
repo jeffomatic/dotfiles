@@ -23,10 +23,6 @@ PATH="/usr/local/heroku/bin:$PATH"
 PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 export PATH
 
-### LANGUAGE VERSION MANAGEMENT
-
-[[ -f "/usr/local/opt/asdf/asdf.sh" ]] && source /usr/local/opt/asdf/asdf.sh
-
 ### PS1
 
 function color_my_prompt {
