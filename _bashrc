@@ -5,6 +5,7 @@ export GOPATH=$HOME/go
 export NODE_PATH=/usr/local/lib/node_modules
 export GIT_SSH=ssh-git
 export FONTCONFIG_PATH=/opt/X11/lib/X11/fontconfig
+export PROMPT_COMMAND='history -a'
 
 [[ -f "$HOME/.aws_creds" ]] && source "$HOME/.aws_creds"
 
