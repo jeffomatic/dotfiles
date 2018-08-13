@@ -72,4 +72,9 @@ command -v rbenv >/dev/null && eval "$(rbenv init -)"
 
 alias ls="ls -GF"
 
+### LOCAL CONFIG
 
+localConfig=$HOME/.localrc
+if [ -f $localConfig ]; then
+  . $localConfig
+fi
