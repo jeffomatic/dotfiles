@@ -63,7 +63,7 @@ if [ -s "$HOME/.nvm/nvm.sh" ] && [ ! "$(type -t __init_nvm)" = function ]; then
 fi
 
 if [ -s "$HOME/.opam/opam-init/init.sh" ]; then
-  . /Users/jeff/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+  . "$HOME/.opam/opam-init/init.sh" > /dev/null 2> /dev/null || true
 fi
 
 command -v rbenv 1>/dev/null 2>&1 && eval "$(rbenv init -)"
