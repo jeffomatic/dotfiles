@@ -7,12 +7,14 @@ if [ $branch = 'master' ]; then
     exit 1
 fi
 
+# Fetch first to engage any auth prompts.
+git fetch
+
 ref=`git rev-parse $branch`
 echo "To restore your branch ($branch), run the following:"
 echo "  git checkout $ref"
 
 git checkout master
-git pull
+git merge --ff-only origin/master
 git branch -D $branch
 git remote prune origin
-
