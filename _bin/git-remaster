@@ -1,20 +1,15 @@
 #!/usr/bin/env bash
 set -e
 
-branch=`git branch | grep \* | cut -d ' ' -f2`
-if [ $branch = 'master' ]; then
+if git branch | grep -E '^\*' | grep -qE ' (master|\(HEAD detached at origin/master\))$'; then
     echo "Can't remaster on master" >&2
     exit 1
 fi
 
-# Fetch first to engage any auth prompts.
-git fetch
-
+branch=`git branch | grep \* | cut -d ' ' -f2`
 ref=`git rev-parse $branch`
 echo "To restore your branch ($branch), run the following:"
-echo "  git checkout $ref"
+echo "  git checkout -b $branch $ref"
 
-git checkout master
-git merge --ff-only origin/master
-git checkout $branch
-git rebase -i master
+git fetch
+git rebase -i origin/master
