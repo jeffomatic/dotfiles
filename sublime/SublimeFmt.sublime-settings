@@ -1,0 +1,8 @@
+{
+  "formatters": [
+    {
+      "cmd": "/Users/jefflee/.opam/system/bin/ocamlformat",
+      "extensions": [".ml"]
+    }
+  ]
+}

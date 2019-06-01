@@ -1,0 +1,34 @@
+{
+    // path to phpcs binary
+    "phpcs_executable_path": "/Users/jefflee/src/webapp",
+
+    // Do you want to run the phpcs checker?
+    "phpcs_sniffer_run": true,
+
+    // Execute the sniffer on file save
+    "phpcs_command_on_save": true,
+
+    // Additional arguments you can specify into the application
+     "phpcs_additional_args": {
+        "--standard": "Slack",
+        "-n": ""
+    },
+
+    // PHP Linter settings
+
+    // Are we going to run php -l over the file?
+    "phpcs_linter_run": true,
+
+    // Use hhvm, not zend php
+    "phpcs_php_path": "/usr/local/bin/hhvm",
+
+    // Execute the linter on file save
+    "phpcs_linter_command_on_save": true,
+
+
+    // Disable the other linters
+    "php_cs_fixer_on_save": false,
+    "phpcbf_on_save": false,
+    "phpmd_run": false,
+    "scheck_run": false
+}

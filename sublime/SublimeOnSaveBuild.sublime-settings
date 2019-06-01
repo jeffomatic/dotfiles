@@ -1,0 +1,4 @@
+{
+  "build_on_save": false,
+  "filename_filter": "\\.(php|hh)"
+}

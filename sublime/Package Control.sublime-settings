@@ -1,0 +1,39 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"AlignTab",
+		"Babel",
+		"Better OCaml",
+		"BracketHighlighter",
+		"CMake",
+		"FileDiffs",
+		"FindKeyConflicts",
+		"Fix Mac Path",
+		"Git",
+		"hack-sublime",
+		"LSP",
+		"MarkdownTOC",
+		"Merlin",
+		"Package Control",
+		"PackageDev",
+		"Path Tools",
+		"Pretty JSON",
+		"PyYapf Python Formatter",
+		"RawLineEdit",
+		"SingleTrailingNewLine",
+		"Smarty",
+		"SublimeLinter",
+		"SublimeLinter-flake8",
+		"TrailingSpaces",
+		"TypeScript Syntax",
+		"UnitTesting"
+	],
+	"repositories":
+	[
+		"https://github.com/bertrandom/hack-sublime"
+	]
+}
