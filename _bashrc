@@ -69,6 +69,8 @@ fi
 command -v rbenv 1>/dev/null 2>&1 && eval "$(rbenv init -)"
 command -v pyenv 1>/dev/null 2>&1 && eval "$(pyenv init -)"
 
+export PATH="$HOME/.cargo/bin:$PATH"
+
 ### ALIASES & UTILITY FUNCTIONS
 
 alias ls="ls -GF"
