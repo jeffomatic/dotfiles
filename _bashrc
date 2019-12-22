@@ -71,9 +71,12 @@ command -v pyenv 1>/dev/null 2>&1 && eval "$(pyenv init -)"
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
-### ALIASES & UTILITY FUNCTIONS
+### OS-SPECIFIC CONFIG (mostly GNU vs BSD)
 
-alias ls="ls -F --color=auto"
+sysConfig=$HOME/.bashrc.$OSTYPE
+if [ -f "$sysConfig" ]; then
+  . "$sysConfig"
+fi
 
 ### LOCAL CONFIG
 

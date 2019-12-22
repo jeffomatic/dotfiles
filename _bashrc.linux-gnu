@@ -1,0 +1,3 @@
+### ALIASES & UTILITY FUNCTIONS
+
+alias ls="ls -F --color=auto"
