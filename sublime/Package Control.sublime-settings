@@ -5,8 +5,6 @@
 	],
 	"installed_packages":
 	[
-		"AlignTab",
-		"Babel",
 		"Better OCaml",
 		"BracketHighlighter",
 		"CMake",
@@ -15,7 +13,9 @@
 		"Fix Mac Path",
 		"Git",
 		"hack-sublime",
+		"HexViewer",
 		"LSP",
+		"MarkdownPreview",
 		"MarkdownTOC",
 		"Merlin",
 		"Package Control",
@@ -23,13 +23,11 @@
 		"Path Tools",
 		"Pretty JSON",
 		"PyYapf Python Formatter",
-		"RawLineEdit",
 		"SingleTrailingNewLine",
-		"Smarty",
 		"SublimeLinter",
 		"SublimeLinter-flake8",
+		"Swift",
 		"TrailingSpaces",
-		"TypeScript Syntax",
 		"UnitTesting"
 	],
 	"repositories":
