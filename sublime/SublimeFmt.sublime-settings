@@ -1,11 +1,11 @@
 {
   "formatters": [
     {
-      "cmd": "/Users/jefflee/.opam/system/bin/ocamlformat",
+      "cmd": "~/.opam/system/bin/ocamlformat",
       "extensions": [".ml"]
     },
     {
-      "cmd": "rustfmt --emit stdout -q",
+      "cmd": "~/.cargo/bin/rustfmt --emit stdout -q",
       "extensions": [".rs"]
     }
   ]
