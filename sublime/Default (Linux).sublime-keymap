@@ -1,0 +1,4 @@
+[
+		{ "keys": ["ctrl+t"], "command": "show_overlay", "args": {"overlay": "goto", "show_files": true} },
+		{ "keys": ["ctrl+o"], "command": "prompt_open_folder" }
+]
