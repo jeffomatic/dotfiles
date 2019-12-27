@@ -1,0 +1,44 @@
+#!/bin/bash
+#
+# This script filters rustfmt output for format-on-save workflows in text
+# editors.
+#
+# Usage:
+#
+#   rustfmt-skip-children /path/to/source
+#
+# In particular, it:
+#
+# 1. Removes output for all but the first file in the output. rustfmt prior to
+#    v2.0 will not only emit formatted source for the provided file, but also
+#    for local modules that it depends on. This is not very useful if you're
+#    doing single-file formatting, e.g., for format-on-save.
+# 2. Removes some metadata output that precedes the actual formatting output,
+#    such as the filename and the following blank line. You can also do this
+#    simply by passing --quiet to rustfmt, but the metadata is necessary for
+#    achieving item 1 above.
+#
+# Note that this script is not necessary for rustfmt 2.0 and onward. Read more
+# at https://github.com/rust-lang/rustfmt/issues/3893#issuecomment-546747980
+
+set -euo pipefail
+
+~/.cargo/bin/rustfmt --emit stdout "$1" | awk "
+  BEGIN {print_ok = 0}
+  {
+    if (\$0 == \"$(realpath $1):\") {
+      print_ok = 1;
+
+      # rustfmt includes a blank line after the filename
+      getline;
+      next;
+    }
+
+    if (/^(\/[^/]+)*\/[^/]+:/) {
+      print_ok = 0;
+      next;
+    }
+
+    if (print_ok == 1) {print}
+  }
+"

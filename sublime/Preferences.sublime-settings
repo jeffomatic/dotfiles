@@ -22,10 +22,9 @@
 	[
 		"gray_antialias"
 	],
-	"font_size": 16,
+	"font_size": 17.5,
 	"ignored_packages":
 	[
-		"Fix Mac Path",
 		"LSP",
 		"Merlin",
 		"Vintage"

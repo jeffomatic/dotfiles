@@ -5,7 +5,7 @@
       "extensions": [".ml"]
     },
     {
-      "cmd": "~/.cargo/bin/rustfmt --emit stdout -q",
+      "cmd": "~/.bin/rustfmt-skip-children",
       "extensions": [".rs"]
     }
   ]
