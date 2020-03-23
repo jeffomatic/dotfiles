@@ -1,0 +1,70 @@
+### ENVVARS
+
+export JAVA_HOME=`/usr/libexec/java_home`
+export GOPATH=$HOME/go
+export NODE_PATH=/usr/local/lib/node_modules
+export GIT_SSH=ssh-git
+export FONTCONFIG_PATH=/opt/X11/lib/X11/fontconfig
+export PROMPT_COMMAND='history -a'
+
+[[ -f "$HOME/.aws_creds" ]] && source "$HOME/.aws_creds"
+
+### PATH EXTENSIONS
+
+PATH="$HOME/.bin:$PATH"
+
+if [[ -d "$HOME/bin" ]]; then
+  PATH="$HOME/bin:$PATH"
+fi
+
+PATH="/usr/local/share/npm/bin:$PATH" # Add NPM global binaries to PATH
+PATH="$GOPATH/bin:$PATH"
+PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
+PATH="/usr/local/heroku/bin:$PATH"
+PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+export PATH
+
+### PS1
+
+# Load version control information
+autoload -Uz vcs_info
+precmd() { vcs_info }
+
+# Format the vcs_info_msg_0_ variable
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:*' unstagedstr '*'
+zstyle ':vcs_info:*' stagedstr '+'
+zstyle ':vcs_info:git:*' formats ' (%b%u%c)'
+ 
+# Set up the prompt (with git branch name)
+setopt PROMPT_SUBST
+PROMPT='%F{green}%n@%M %F{blue}${PWD/#$HOME/~}%F{red}${vcs_info_msg_0_} %B%F{white}%#%f%b '
+
+### shell completion
+
+autoload -U +X compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
+
+### LANGUAGE VERSION MANAGEMENT
+
+# TODO: nvm
+
+if [ -s "$HOME/.opam/opam-init/init.sh" ]; then
+  . "$HOME/.opam/opam-init/init.sh" > /dev/null 2> /dev/null || true
+fi
+
+command -v rbenv 1>/dev/null 2>&1 && eval "$(rbenv init -)"
+command -v pyenv 1>/dev/null 2>&1 && eval "$(pyenv init -)"
+
+export PATH="$HOME/.cargo/bin:$PATH"
+
+### ALIASES & UTILITY FUNCTIONS
+
+alias ls="ls -GF"
+
+### LOCAL CONFIG
+
+localConfig=$HOME/.localrc
+if [ -f $localConfig ]; then
+  . $localConfig
+fi
