@@ -14,8 +14,9 @@
 		"js/prebuilt",
 		"rocket",
 		"node_modules",
-		"vendor",
-		"translations"
+		"translations",
+		"_build",
+		"vendor"
 	],
 	"font_face": "Inconsolata",
 	"font_options":
@@ -25,8 +26,8 @@
 	"font_size": 17.5,
 	"ignored_packages":
 	[
+		"hack-sublime",
 		"LSP",
-		"Merlin",
 		"Vintage"
 	],
 	"preview_on_click": false,

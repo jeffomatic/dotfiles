@@ -13,6 +13,8 @@
 		"FindKeyConflicts",
 		"Fix Mac Path",
 		"Git",
+		"Golang Tools Integration",
+		"Graphvizer",
 		"hack-sublime",
 		"HexViewer",
 		"LSP",
