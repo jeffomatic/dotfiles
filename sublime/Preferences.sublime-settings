@@ -15,6 +15,7 @@
 		"rocket",
 		"node_modules",
 		"translations",
+		"target",
 		"_build",
 		"vendor"
 	],
