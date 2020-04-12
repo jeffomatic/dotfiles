@@ -1,3 +1,10 @@
+### ANTIGEN (plugins)
+
+source $HOME/dotfiles/antigen.zsh
+export NVM_LAZY_LOAD=true
+antigen bundle lukechilds/zsh-nvm # NVM with lazy loading
+antigen apply
+
 ### ENVVARS
 
 #export JAVA_HOME=`/usr/libexec/java_home`
