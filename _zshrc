@@ -34,18 +34,14 @@ export PATH
 ### PS1
 
 # Load version control information
-autoload -Uz vcs_info
-precmd() { vcs_info }
+precmd() {
+  GIT_DIRTY=`git rev-parse 2>/dev/null && (git diff --no-ext-diff --quiet --exit-code 2> /dev/null && echo -e "" || echo -e "*")`
+  GIT_BRANCH=`git branch 2> /dev/null | grep -e '^*' | sed -E "s/^\* \(?([^)]+)\)?/ (\1$GIT_DIRTY)/"`
+}
 
-# Format the vcs_info_msg_0_ variable
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:*' unstagedstr '*'
-zstyle ':vcs_info:*' stagedstr '+'
-zstyle ':vcs_info:git:*' formats ' (%b%u%c)'
- 
 # Set up the prompt (with git branch name)
 setopt PROMPT_SUBST
-PROMPT='%F{green}%n@%M %F{blue}${PWD/#$HOME/~}%F{red}${vcs_info_msg_0_} %B%F{white}%#%f%b '
+PROMPT='%F{green}%n@%M %F{blue}${PWD/#$HOME/~}%F{red}${GIT_BRANCH} %B%F{white}%#%f%b '
 
 ### shell completion
 
@@ -53,8 +49,6 @@ autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 
 ### LANGUAGE VERSION MANAGEMENT
-
-# TODO: nvm
 
 if [ -s "$HOME/.opam/opam-init/init.sh" ]; then
   . "$HOME/.opam/opam-init/init.sh" > /dev/null 2> /dev/null || true
