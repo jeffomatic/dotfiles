@@ -61,9 +61,12 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export NVM_LAZY_LOAD=true
 source $HOME/dotfiles/zsh-nvm.plugin.zsh
 
-### ALIASES & UTILITY FUNCTIONS
+### OS-SPECIFIC CONFIG (mostly GNU vs BSD)
 
-alias ls="ls -GF"
+sysConfig=$HOME/.zshrc.$OSTYPE
+if [ -f "$sysConfig" ]; then
+  . "$sysConfig"
+fi
 
 ### LOCAL CONFIG
 
