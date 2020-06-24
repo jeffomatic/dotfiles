@@ -65,7 +65,6 @@ source $HOME/dotfiles/zsh-nvm.plugin.zsh
 
 osType=$(echo 'darwin18' | sed -E 's/^darwin[0-9]+/darwin/')
 sysConfig=$HOME/.zshrc.$osType
-echo $sysConfig
 if [ -f "$sysConfig" ]; then
   . "$sysConfig"
 fi
