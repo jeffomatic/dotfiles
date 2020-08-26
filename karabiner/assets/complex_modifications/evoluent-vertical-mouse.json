@@ -1,0 +1,84 @@
+{
+  "title": "Evoluent 4 on OSX 10.15+",
+  "rules": [
+    {
+      "description": "Upper button: back",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "pointing_button": "button4"
+          },
+          "to": {
+            "key_code": "open_bracket",
+            "modifiers": [
+              "left_command"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "description": "Lower button + left click: go right one space",
+      "parameters": {
+        "basic.simultaneous_threshold_milliseconds": 500
+      },
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "simultaneous": [
+              {
+                "pointing_button": "button6"
+              },
+              {
+                "pointing_button": "button1"
+              }
+            ],
+            "simultaneous_options": {
+              "key_down_order": "strict",
+              "key_up_when": "any"
+            }
+          },
+          "to": {
+            "key_code": "right_arrow",
+            "modifiers": [
+              "left_control"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "description": "Lower button + right click: go right one space",
+      "manipulators": [
+        {
+          "type": "basic",
+          "parameters": {
+            "basic.simultaneous_threshold_milliseconds": 500
+          },
+          "from": {
+            "simultaneous": [
+              {
+                "pointing_button": "button6"
+              },
+              {
+                "pointing_button": "button2"
+              }
+            ],
+            "simultaneous_options": {
+              "key_down_order": "strict",
+              "key_up_when": "any"
+            }
+          },
+          "to": {
+            "key_code": "left_arrow",
+            "modifiers": [
+              "left_control"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
