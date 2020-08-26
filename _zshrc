@@ -63,7 +63,7 @@ source $HOME/dotfiles/zsh-nvm.plugin.zsh
 
 ### OS-SPECIFIC CONFIG (mostly GNU vs BSD)
 
-osType=$(echo $OSTYPE | sed -E 's/^darwin[0-9]+/darwin/')
+osType=$(echo $OSTYPE | sed -E 's/^darwin[0-9.]+/darwin/')
 sysConfig=$HOME/.zshrc.$osType
 if [ -f "$sysConfig" ]; then
   . "$sysConfig"
