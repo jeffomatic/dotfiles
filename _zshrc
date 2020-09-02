@@ -41,6 +41,11 @@ PROMPT='%F{green}%n@%M %F{blue}${PWD/#$HOME/~}%F{red}${GIT_BRANCH} %B%F{white}%#
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 
+### run-help for builtins documentation
+
+(( $+aliases[run-help] )) && unalias run-help
+autoload -Uz run-help
+
 ### LANGUAGE VERSION MANAGEMENT
 
 # ocaml
