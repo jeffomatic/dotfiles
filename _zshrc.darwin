@@ -1,3 +1,6 @@
 ### ALIASES & UTILITY FUNCTIONS
 
 alias ls="ls -GF"
+
+### Ruby build options (Mac specific)
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
