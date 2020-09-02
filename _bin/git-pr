@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+path=$(git remote show -n origin | grep 'git@' | head -n 1 | sed -E 's/^.*git@([^:]+):([^.]+).git.*$/\1\/\2/')
+branch=$(git branch --no-color --show-current)
+open "https://$path/compare/$branch?expand=1"
