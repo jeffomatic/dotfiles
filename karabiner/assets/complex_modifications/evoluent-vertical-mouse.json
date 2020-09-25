@@ -19,64 +19,94 @@
       ]
     },
     {
-      "description": "Lower button + left click: go right one space",
-      "parameters": {
-        "basic.simultaneous_threshold_milliseconds": 500
-      },
+      "description": "Button6 next/prev space",
       "manipulators": [
         {
           "type": "basic",
           "from": {
-            "simultaneous": [
-              {
-                "pointing_button": "button6"
-              },
-              {
-                "pointing_button": "button1"
-              }
-            ],
-            "simultaneous_options": {
-              "key_down_order": "strict",
-              "key_up_when": "any"
+            "pointing_button": "button6",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
             }
           },
-          "to": {
-            "key_code": "right_arrow",
-            "modifiers": [
-              "left_control"
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "description": "Lower button + right click: go right one space",
-      "manipulators": [
-        {
-          "type": "basic",
           "parameters": {
-            "basic.simultaneous_threshold_milliseconds": 500
+            "basic.to_if_alone_timeout_milliseconds": 100000
           },
-          "from": {
-            "simultaneous": [
-              {
-                "pointing_button": "button6"
-              },
-              {
-                "pointing_button": "button2"
+          "to_if_alone": [
+            {
+              "pointing_button": "button6"
+            }
+          ],
+          "to": [
+            {
+              "set_variable": {
+                "name": "button6_held",
+                "value": 1
               }
-            ],
-            "simultaneous_options": {
-              "key_down_order": "strict",
-              "key_up_when": "any"
+            }
+          ],
+          "to_after_key_up": [
+            {
+              "set_variable": {
+                "name": "button6_held",
+                "value": 0
+              }
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "pointing_button": "button1",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
             }
           },
-          "to": {
-            "key_code": "left_arrow",
-            "modifiers": [
-              "left_control"
-            ]
-          }
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "button6_held",
+              "value": 1
+            }
+          ],
+          "to": [
+            {
+              "key_code": "right_arrow",
+              "modifiers": [
+                "control"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "pointing_button": "button2",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "button6_held",
+              "value": 1
+            }
+          ],
+          "to": [
+            {
+              "key_code": "left_arrow",
+              "modifiers": [
+                "control"
+              ]
+            }
+          ]
         }
       ]
     }
