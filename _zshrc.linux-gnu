@@ -1,3 +1,13 @@
 ### ALIASES & UTILITY FUNCTIONS
 
 alias ls="ls -F --color=auto"
+
+### ssh-agent
+
+if [ -z "$SSH_AUTH_SOCK" ]; then
+  RUNNING_AGENT="`ps -ax | grep 'ssh-agent -s' | grep -v grep | wc -l | tr -d '[:space:]'`"
+  if [ "$RUNNING_AGENT" = "0" ]; then
+    ssh-agent -s &> ~/.ssh/ssh-agent
+  fi
+  eval `cat ~/.ssh/ssh-agent`
+fi
