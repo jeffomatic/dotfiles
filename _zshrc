@@ -60,7 +60,9 @@ command -v rbenv 1>/dev/null 2>&1 && eval "$(rbenv init -)"
 command -v pyenv 1>/dev/null 2>&1 && eval "$(pyenv init -)"
 
 # rust
-export PATH="$HOME/.cargo/bin:$PATH"
+if [ -s "$HOME/.cargo/env" ]; then
+  . "$HOME/.cargo/env"
+fi
 
 # nvm with lazy loading
 export NVM_LAZY_LOAD=true
