@@ -1,17 +1,19 @@
 #!/usr/bin/env bash
-set -e
+set -euo pipefail
 
-if git branch | grep -E '^\*' | grep -qE ' (master|\(HEAD detached at origin/master\))$'; then
-    echo "Can't post-land on master" >&2
+defaultBranch=$(git remote show origin | grep "HEAD branch" | cut -d ":" -f 2 | tr -d '[:space:]')
+
+if git branch | grep -qE "(\* ${defaultBranch}|\* \(HEAD detached)"; then
+    echo "Can't post-land on current branch" >&2
     exit 1
 fi
 
-branch=`git branch | grep \* | cut -d ' ' -f2`
-ref=`git rev-parse $branch`
+branch=$(git branch | grep \* | cut -d ' ' -f2)
+ref=$(git rev-parse $branch)
 echo "To restore your branch ($branch), run the following:"
 echo "  git checkout -b $branch $ref"
 
 git fetch
-git -c advice.detachedHead=false checkout origin/master
+git -c advice.detachedHead=false checkout origin/${defaultBranch}
 git branch -D $branch
 git remote prune origin
