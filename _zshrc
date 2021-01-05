@@ -64,9 +64,9 @@ if [ -s "$HOME/.cargo/env" ]; then
   . "$HOME/.cargo/env"
 fi
 
-# nvm with lazy loading
-export NVM_LAZY_LOAD=true
-source $HOME/dotfiles/zsh-nvm.plugin.zsh
+# node
+export PATH=/Users/jeff/.fnm:$PATH
+eval "`fnm env`"
 
 ### OS-SPECIFIC CONFIG (mostly GNU vs BSD)
 
@@ -82,3 +82,4 @@ localConfig=$HOME/.localrc
 if [ -f $localConfig ]; then
   . $localConfig
 fi
+
