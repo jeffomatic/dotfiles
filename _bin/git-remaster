@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
-if git branch | grep -E '^\*' | grep -qE ' (master|\(HEAD detached at origin/master\))$'; then
-    echo "Can't remaster on master" >&2
+defaultBranch=$(git remote show origin | grep "HEAD branch" | cut -d ":" -f 2 | tr -d '[:space:]')
+
+if git branch | grep -qE "(\* ${defaultBranch}|\* \(HEAD detached)"; then
+    echo "Can't remaster on current branch" >&2
     exit 1
 fi
 
@@ -12,4 +14,4 @@ echo "To restore your branch ($branch), run the following:"
 echo "  git checkout -b $branch $ref"
 
 git fetch
-git rebase -i origin/master
+git rebase -i origin/${defaultBranch}
