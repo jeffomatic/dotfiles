@@ -64,10 +64,6 @@ if [ -s "$HOME/.cargo/env" ]; then
   . "$HOME/.cargo/env"
 fi
 
-# node
-export PATH=/Users/jeff/.fnm:$PATH
-eval "`fnm env`"
-
 ### OS-SPECIFIC CONFIG (mostly GNU vs BSD)
 
 osType=$(echo $OSTYPE | sed -E 's/^darwin[0-9.]+/darwin/')
@@ -82,4 +78,3 @@ localConfig=$HOME/.localrc
 if [ -f $localConfig ]; then
   . $localConfig
 fi
-
