@@ -1,0 +1,12 @@
+[user]
+	name = Jeff Lee
+	email = jeffomatic@gmail.com
+[pull]
+	ff = only
+[init]
+	defaultBranch = main
+[core]
+	excludesFile = ~/.gitignore
+[alias]
+	co = checkout
+	cob = checkout
