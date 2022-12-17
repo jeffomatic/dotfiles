@@ -48,16 +48,19 @@ autoload -Uz run-help
 
 ### LANGUAGE VERSION MANAGEMENT
 
-# ocaml
-if [ -s "$HOME/.opam/opam-init/init.sh" ]; then
-  . "$HOME/.opam/opam-init/init.sh" > /dev/null 2> /dev/null || true
-fi
+# asdf
+# see Homebrew-specific init in .zshrc.darwin
+
+# # ocaml
+# if [ -s "$HOME/.opam/opam-init/init.sh" ]; then
+#   . "$HOME/.opam/opam-init/init.sh" > /dev/null 2> /dev/null || true
+# fi
 
 # ruby
-command -v rbenv 1>/dev/null 2>&1 && eval "$(rbenv init -)"
+# command -v rbenv 1>/dev/null 2>&1 && eval "$(rbenv init -)"
 
 # python
-command -v pyenv 1>/dev/null 2>&1 && eval "$(pyenv init -)"
+# command -v pyenv 1>/dev/null 2>&1 && eval "$(pyenv init -)"
 
 # rust
 if [ -s "$HOME/.cargo/env" ]; then

@@ -4,3 +4,6 @@ alias ls="ls -GF"
 
 ### Ruby build options (Mac specific)
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/opt/homebrew/opt/openssl@1.1"
+
+# asdf
+. /opt/homebrew/opt/asdf/libexec/asdf.sh

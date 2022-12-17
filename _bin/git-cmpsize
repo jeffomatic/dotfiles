@@ -1,0 +1,22 @@
+#!/bin/bash
+# from: https://gist.github.com/Boldewyn/7319f446ef74c85f5f06
+
+if [[ $1 == "--help" || $1 == "-h" ]]; then
+    cat <<USAGE
+usage: $(basename "$0") FILE [REVISION]
+Compare file size between version at REVISION (default: index) and
+on disk.
+USAGE
+    exit
+fi
+
+SIZE_OLD=$(git show "$2:$1" | wc -c)
+SIZE_NEW=$(cat "$1" | wc -c)
+
+REV=${2:-index}
+PAD_LENGTH=$(( ${#REV} > 4 ? ${#REV} : 4 ))
+PAD_LENGTH=$(( $PAD_LENGTH + $(( $SIZE_OLD > $SIZE_NEW ? ${#SIZE_OLD} : ${#SIZE_NEW} )) ))
+
+printf "Size in $REV: %$(( ${PAD_LENGTH} - ${#REV} ))d\n" "$SIZE_OLD"
+printf "Size on file: %$(( ${PAD_LENGTH} - 4 ))d\n" "$SIZE_NEW"
+printf "Difference:   %+$(( ${PAD_LENGTH} - 4 ))d\n" "$(( $SIZE_NEW - $SIZE_OLD ))"
