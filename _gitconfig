@@ -9,4 +9,4 @@
 	excludesFile = ~/.gitignore
 [alias]
 	co = checkout
-	cob = checkout -b
+	cob = checkout --no-track -b
