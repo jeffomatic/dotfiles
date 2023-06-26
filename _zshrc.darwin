@@ -6,4 +6,6 @@ alias ls="ls -GF"
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/opt/homebrew/opt/openssl@1.1"
 
 # asdf
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+if [ -f "/opt/homebrew/opt/asdf/libexec/asdf.sh" ]; then
+  . /opt/homebrew/opt/asdf/libexec/asdf.sh
+fi
