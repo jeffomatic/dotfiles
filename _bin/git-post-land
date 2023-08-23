@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-defaultBranch=$(git remote show origin | grep "HEAD branch" | cut -d ":" -f 2 | tr -d '[:space:]')
+defaultBranch=$(git-default-branch)
 
 if git branch | grep -qE "(\* ${defaultBranch}|\* \(HEAD detached)"; then
     echo "Can't post-land on current branch" >&2

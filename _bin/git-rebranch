@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+defaultBranch=$(git-default-branch)
+
+branch=$(git branch | grep \* | cut -d ' ' -f2)
+ref=$(git rev-parse $branch)
+echo "To restore your branch ($branch), run the following:"
+echo "  git checkout -b $branch $ref"
+
+git rebase -i $(git merge-base origin/${defaultBranch} ${branch})
