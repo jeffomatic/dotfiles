@@ -28,8 +28,8 @@ export PATH
 
 # Load version control information
 precmd() {
-  GIT_DIRTY=`git rev-parse 2>/dev/null && (git diff --no-ext-diff --quiet --exit-code 2> /dev/null && echo -e "" || echo -e "*")`
-  GIT_BRANCH=`git branch 2> /dev/null | grep -e '^*' | sed -E "s/^\* \(?([^)]+)\)?/ (\1$GIT_DIRTY)/"`
+  GIT_DIRTY=$(git rev-parse 2>/dev/null && (git diff --no-ext-diff --quiet --exit-code 2>/dev/null && echo -e "" || echo -e "*"))
+  GIT_BRANCH=$(git branch 2>/dev/null | grep -e '^*' | sed -E "s/^\* \(?([^)]+)\)?/ (\1$GIT_DIRTY)/")
 }
 
 # Set up the prompt (with git branch name)
@@ -43,7 +43,7 @@ autoload -U +X bashcompinit && bashcompinit
 
 ### run-help for builtins documentation
 
-(( $+aliases[run-help] )) && unalias run-help
+(($ + aliases[run - help])) && unalias run-help
 autoload -Uz run-help
 
 ### LANGUAGE VERSION MANAGEMENT
