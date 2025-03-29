@@ -6,7 +6,7 @@
 [init]
 	defaultBranch = main
 [core]
-	excludesFile = ~/.gitignore
+	excludesFile = ~/.gitignore_global
 [alias]
 	co = checkout
 	cob = checkout --no-track -b
