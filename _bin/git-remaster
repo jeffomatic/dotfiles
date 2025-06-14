@@ -3,15 +3,24 @@ set -e
 
 defaultBranch=$(git remote show origin | grep "HEAD branch" | cut -d ":" -f 2 | tr -d '[:space:]')
 
-if git branch | grep -qE "(\* ${defaultBranch}|\* \(HEAD detached)"; then
-    echo "Can't remaster on current branch" >&2
+if git branch | grep -qE "HEAD detached"; then
+    echo "Can't remaster with detached HEAD" >&2
     exit 1
 fi
 
-branch=`git branch | grep \* | cut -d ' ' -f2`
-ref=`git rev-parse $branch`
+# Confirm when remastering the default branch
+if [ "$defaultBranch" = "$(git rev-parse --abbrev-ref HEAD)" ]; then
+    read -rp "You are about to remaster the default branch ($defaultBranch). Are you sure? (y/N): " confirm
+    if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
+        echo "aborting..."
+        exit 1
+    fi
+fi
+
+branch=$(git branch | grep '\*' | cut -d ' ' -f2)
+ref=$(git rev-parse "$branch")
 echo "To restore your branch ($branch), run the following:"
 echo "  git checkout -b $branch $ref"
 
 git fetch
-git rebase -i origin/${defaultBranch}
+git rebase -i origin/"${defaultBranch}"
