@@ -1,5 +1,23 @@
 #!/usr/bin/env bash
 
+if [ -n "$1" ]; then
+  # Extract SHA-like pattern (40 hex chars) from argument (handles URLs or plain SHAs)
+  extracted=$(echo "$1" | grep -oE '[0-9a-f]{40}' | head -n 1)
+
+  # If extraction failed, try using the argument as-is
+  if [ -z "$extracted" ]; then
+    extracted="$1"
+  fi
+
+  # Validate and normalize commit SHA
+  commit=$(git rev-parse --verify "$extracted" 2>/dev/null)
+  if [ -z "$commit" ]; then
+      echo "Error: Invalid commit SHA" >&2
+      exit 1
+  fi
+else
+    commit=$(git rev-parse HEAD)
+fi
+
 path=$(git remote show -n origin | grep 'git@' | head -n 1 | sed -E 's/^.*git@([^:]+):([^.]+).git.*$/\1\/\2/')
-commit=$(git rev-parse HEAD)
 open "https://$path/commit/$commit"
