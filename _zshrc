@@ -28,12 +28,22 @@ export PATH
 
 # Load version control information
 precmd() {
-  GIT_DIRTY=$(git rev-parse 2>/dev/null && (git diff --no-ext-diff --quiet --exit-code 2>/dev/null && echo -e "" || echo -e "*"))
-  GIT_BRANCH=$(git branch 2>/dev/null | grep -e '^*' | sed -E "s/^\* \(?([^)]+)\)?/ (\1$GIT_DIRTY)/")
+  # Detect whether there are uncommitted changes or untracked files in the repo.
+  # git-diff is expensive if the repo uses LFS, so let's use something cheaper.
+  if git diff-index --quiet HEAD -- 2>/dev/null && \
+    [[ -z $(git ls-files --others --exclude-standard 2>/dev/null) ]]; then
+    GIT_DIRTY=""
+  else
+    GIT_DIRTY="*"
+  fi
+
+  GIT_BRANCH=$(git branch 2>/dev/null | grep -e '^\*' | sed -E "s/^\* \(?([^)]+)\)?/ (\1$GIT_DIRTY)/")
 }
 
 # Set up the prompt (with git branch name)
 setopt PROMPT_SUBST
+# We don't want to expand PROMPT right away, so disable shellcheck for this line.
+# shellcheck disable=SC2016
 PROMPT='%F{green}%n@%M %F{blue}${PWD/#$HOME/~}%F{red}${GIT_BRANCH} %B%F{white}%#%f%b '
 
 ### shell completion
@@ -51,17 +61,6 @@ autoload -Uz run-help
 # asdf
 # see Homebrew-specific init in .zshrc.darwin
 
-# # ocaml
-# if [ -s "$HOME/.opam/opam-init/init.sh" ]; then
-#   . "$HOME/.opam/opam-init/init.sh" > /dev/null 2> /dev/null || true
-# fi
-
-# ruby
-# command -v rbenv 1>/dev/null 2>&1 && eval "$(rbenv init -)"
-
-# python
-# command -v pyenv 1>/dev/null 2>&1 && eval "$(pyenv init -)"
-
 # rust
 if [ -s "$HOME/.cargo/env" ]; then
   . "$HOME/.cargo/env"
@@ -78,6 +77,6 @@ fi
 ### LOCAL CONFIG
 
 localConfig=$HOME/.localrc
-if [ -f $localConfig ]; then
-  . $localConfig
+if [ -f "$localConfig" ]; then
+  . "$localConfig"
 fi
