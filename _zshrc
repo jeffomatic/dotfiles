@@ -44,10 +44,11 @@ precmd() {
 setopt PROMPT_SUBST
 # We don't want to expand PROMPT right away, so disable shellcheck for this line.
 # shellcheck disable=SC2016
-PROMPT='%F{green}%n@%M %F{blue}${PWD/#$HOME/~}%F{red}${GIT_BRANCH} %B%F{white}%#%f%b '
+PROMPT='%F{242}%*%f %F{green}%n@local %F{blue}${PWD/#$HOME/~}%F{red}${GIT_BRANCH} %B%F{white}%#%f%b '
 
 ### shell completion
 
+zstyle ':completion:*:*:make:*' tag-order 'targets'
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 
