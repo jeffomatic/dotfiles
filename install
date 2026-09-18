@@ -2,7 +2,7 @@
 
 function link_file {
   source="${PWD}/$1"
-  target="${HOME}/"`echo $1 | sed "s/^_/./"`
+  target="${HOME}/"$(echo $1 | sed "s/^_/./")
 
   echo "Linking ${source} to ${target}..."
 

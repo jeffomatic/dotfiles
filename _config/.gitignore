@@ -1,3 +1,5 @@
-configstore/
-iterm2/
-yarn/
+*
+!.gitignore
+!ghosttty/
+!git/
+!karabiner/
