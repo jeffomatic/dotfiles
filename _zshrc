@@ -59,8 +59,8 @@ autoload -Uz run-help
 
 ### LANGUAGE VERSION MANAGEMENT
 
-# asdf
-# see Homebrew-specific init in .zshrc.darwin
+# mise CLI
+eval "$(/Users/jefflee/.local/bin/mise activate zsh)"
 
 # rust
 if [ -s "$HOME/.cargo/env" ]; then
