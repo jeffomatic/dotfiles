@@ -1,0 +1,1 @@
+{ "name": "no-email-leak", "version": "0.1.0", "description": "Drops your account email from Claude's context and stops tool calls that would send it over the network" }

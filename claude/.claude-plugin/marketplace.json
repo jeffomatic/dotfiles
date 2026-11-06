@@ -1,0 +1,11 @@
+{
+  "name": "dotfiles",
+  "owner": { "name": "dotfiles" },
+  "plugins": [
+    {
+      "name": "no-email-leak",
+      "source": "./mods/no-email-leak",
+      "description": "Drops your account email from Claude's context and stops tool calls that would send it over the network"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+#!/bin/bash
+# Registers this folder as a Claude Code plugin catalog ("dotfiles") and
+# installs its mods for the current user. Safe to run again.
+set -e
+here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+if ! command -v claude >/dev/null 2>&1; then
+  echo "claude not on PATH; skipping Claude Code mods."
+  exit 0
+fi
+
+if claude plugin marketplace list 2>/dev/null | grep -q '\bdotfiles\b'; then
+  claude plugin marketplace update dotfiles
+else
+  claude plugin marketplace add "$here"
+fi
+
+for mod in "$here"/mods/*/; do
+  name="$(basename "$mod")"
+  echo "Installing Claude Code mod ${name}..."
+  claude plugin install "${name}@dotfiles" --scope user
+done
